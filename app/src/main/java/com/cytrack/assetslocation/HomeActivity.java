@@ -24,10 +24,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+        // TODO: delete this once asynctask is used for network access
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         resultTxt = (TextView) findViewById(R.id.result);
         submitLocationBtn = (Button) findViewById(R.id.submitLocationBtn);
         submitLocationBtn.setOnClickListener(new View.OnClickListener(){
@@ -42,8 +41,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void submitLocation(){
         final Request request = new Request.Builder().url("http://demo1680352.mockable.io/").build();
-        
-        // We should use the asynctask instead of running on the main thread
+
+        // TODO: We should use the asynctask instead of running on the main thread
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
