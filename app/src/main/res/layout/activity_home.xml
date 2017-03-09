@@ -6,22 +6,23 @@
     tools:context="com.cytrack.assetslocation.HomeActivity">
 
     <EditText
-        android:id="@+id/customer"
+        android:id="@+id/assetid"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Customer ID"
+        android:hint="Asset ID"
+        android:inputType="number"
         android:layout_centerHorizontal="true"/>
     <EditText
-        android:id="@+id/notes"
+        android:id="@+id/assetNotes"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/customer"
+        android:layout_below="@id/assetid"
         android:layout_centerHorizontal="true"
         android:hint="Notes" />
     <Button
@@ -31,7 +32,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/notes"
+        android:layout_below="@id/assetNotes"
         android:layout_centerHorizontal="true"
         android:text="Submit Asset"/>
     <TextView
