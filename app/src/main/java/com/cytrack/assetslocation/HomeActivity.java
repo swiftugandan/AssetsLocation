@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view){
                 try
                 {
-                    Intent intent = new Intent(Intent.ACTION_DEFAULT, Uri.parse("cz.destil.gpsaveraging.AVERAGED_LOCATION"));
+                    Intent intent = new Intent("cz.destil.gpsaveraging.AVERAGED_LOCATION");
                     startActivityForResult(intent, 0);
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
