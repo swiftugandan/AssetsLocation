@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cytrack.assetslocation.HomeActivity">
@@ -12,7 +13,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Asset ID"
+        android:hint="Account ID"
         android:inputType="number"
         android:layout_centerHorizontal="true"/>
     <EditText

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,13 +29,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
+    public static final String TAG = "TAG";
     private Button submitLocationBtn;
     private TextView resultTxt;
     private EditText assetId;
     private EditText assetNotes;
     private OkHttpClient client;
-    private JSONObject data;
-    private String url = "http://demo4252817.mockable.io/";
+    private String url = "http://www.cy-track.com/uFind/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         assetId = (EditText) findViewById(R.id.assetid);
         assetNotes = (EditText) findViewById(R.id.assetNotes);
         submitLocationBtn = (Button) findViewById(R.id.submitLocationBtn);
+        client = new OkHttpClient();
+
         submitLocationBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -60,13 +63,11 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-        client = new OkHttpClient();
     }
 
-    private void submitLocation(String url, RequestBody requestBody){
+    private void submitLocation(String url){
         final Request request = new Request.Builder()
                 .url(url)
-                .post(requestBody)
                 .cacheControl(CacheControl.FORCE_NETWORK)
                 .build();
 
@@ -104,19 +105,22 @@ public class HomeActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == RESULT_OK) {
             Bundle bundle = intent.getExtras();
-            RequestBody requestBody = new FormBody.Builder()
-                    .add("id", assetId.getText().toString())
-                    .add("notes", assetNotes.getText().toString())
-                    .add("lat", String.valueOf(bundle.getDouble("latitude")))
-                    .add("lon", String.valueOf(bundle.getDouble("longitude")))
-                    .add("alt", String.valueOf(bundle.getDouble("altitude")))
-                    .add("acc", String.valueOf(bundle.getDouble("accuracy")))
-                    .build();
-            submitLocation(url, requestBody);
+
+            // Update the location TextView and show the client TextView
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
+            urlBuilder.addQueryParameter("acc_number", assetId.getText().toString());
+            urlBuilder.addQueryParameter("notes", assetNotes.getText().toString());
+            urlBuilder.addQueryParameter("lat", String.valueOf(bundle.getDouble("latitude")));
+            urlBuilder.addQueryParameter("lng", String.valueOf(bundle.getDouble("longitude")));
+            urlBuilder.addQueryParameter("alt", String.valueOf(bundle.getDouble("altitude")));
+            urlBuilder.addQueryParameter("acc", String.valueOf(bundle.getDouble("accuracy")));
+            urlBuilder.addQueryParameter("cmd", "numValidity");
+
+            submitLocation(urlBuilder.build().toString());
         }
-        else
-        {
+        else {
             //handle cancel
         }
     }
 }
+
