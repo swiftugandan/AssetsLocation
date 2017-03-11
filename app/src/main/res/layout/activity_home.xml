@@ -6,26 +6,24 @@
     android:layout_height="match_parent"
     tools:context="com.cytrack.assetslocation.HomeActivity">
 
-    <EditText
-        android:id="@+id/assetid"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/assetidLayout"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Account ID"
-        android:inputType="number"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true">
+
     <EditText
-        android:id="@+id/assetNotes"
+        android:id="@+id/assetid"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@id/assetid"
-        android:layout_centerHorizontal="true"
-        android:hint="Notes" />
+        android:hint="Account Number"
+        android:inputType="number"
+        android:textSize="44sp"/>
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:id="@+id/submitLocationBtn"
         android:layout_height="wrap_content"
@@ -33,17 +31,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/assetNotes"
+        android:layout_below="@+id/assetidLayout"
         android:layout_centerHorizontal="true"
-        android:text="Submit Asset"/>
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result ..."
-        android:textSize="17sp"
-        android:layout_below="@id/submitLocationBtn"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:text="Check Account"/>
 
 </RelativeLayout>
